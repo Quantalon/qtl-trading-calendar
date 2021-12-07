@@ -45,3 +45,23 @@ class FuturesTradingCalendar:
         if dt.date() in self.no_night_trading_dates:
             return False
         return True
+
+
+class OptionsTradingCalendar:
+    def __init__(self):
+        config_file_path = Path(__file__).parent / 'data' / 'options.toml'
+        self.config = toml.load(config_file_path)
+
+        now = datetime.now()
+        if now.date() > self.config['expire_date']:
+            warnings.warn('the trading calendar config is expired...')
+
+        # Special cases
+        self.no_day_trading_dates = set(self.config['holiday_dates'])
+
+    def has_day_trading(self, dt: datetime):
+        if is_weekend(dt):
+            return False
+        if dt.date() in self.no_day_trading_dates:
+            return False
+        return True
