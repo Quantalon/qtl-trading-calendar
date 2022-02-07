@@ -12,7 +12,7 @@ def main():
 
     print(meta)
 
-    print(f"{meta['url']['futures']=}")
+    print(f"{meta['futures']=}")
 
 
 if __name__ == '__main__':

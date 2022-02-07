@@ -1,3 +1,7 @@
-[url]
-futures = 'https://quantalon.gd2.qingstor.com/trading-calendar/futures.toml'
-options = 'https://quantalon.gd2.qingstor.com/trading-calendar/options.toml'
+[futures]
+filename = 'futures-20221231.toml'
+url = 'https://quantalon.gd2.qingstor.com/trading-calendar/futures-20221231.toml'
+
+[options]
+filename = 'options-20221231.toml'
+url = 'https://quantalon.gd2.qingstor.com/trading-calendar/options-20221231.toml'

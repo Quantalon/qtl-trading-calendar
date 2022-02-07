@@ -35,10 +35,11 @@ class BaseTradingCalendar:
             self.load_data()
 
     def download_data_file(self):
-        self.data_file_path = self.current_dir / f'{self.type}.toml'
+        filename = self.meta[self.type]['filename']
+        self.data_file_path = self.current_dir / filename
         if self.data_file_path.exists():
             return
-        url = self.meta['url'][self.type]
+        url = self.meta[self.type]['url']
         response = urllib.request.urlopen(url)
         data = response.read()
         self.data_file_path.write_bytes(data)
