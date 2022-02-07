@@ -10,6 +10,9 @@ def test():
     r = calendar.has_day_trading(today)
     print(r)
 
+    r = calendar.has_night_trading(today)
+    print(r)
+
     calendar = OptionsTradingCalendar()
     today = datetime.today()
     r = calendar.has_day_trading(today)

@@ -1,0 +1,3 @@
+[url]
+futures = 'https://quantalon.gd2.qingstor.com/trading-calendar/futures.toml'
+options = 'https://quantalon.gd2.qingstor.com/trading-calendar/options.toml'

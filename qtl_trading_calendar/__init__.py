@@ -1,8 +1,16 @@
 from datetime import datetime, timedelta
 from pathlib import Path
 import warnings
+import urllib.request
 
 import toml
+
+
+def load_toml_by_url(url):
+    response = urllib.request.urlopen(url)
+    content = response.read().decode('utf-8')
+    data = toml.loads(content)
+    return data
 
 
 def is_weekend(dt: datetime):
@@ -13,15 +21,38 @@ def is_weekend(dt: datetime):
     return False
 
 
-class FuturesTradingCalendar:
+class BaseTradingCalendar:
+    meta_url = 'https://quantalon.gd2.qingstor.com/trading-calendar/meta.toml'
+    type = None
 
     def __init__(self):
+        self.data_file_path = None
+        self.current_dir = Path(__file__).parent
+        self.meta = load_toml_by_url(self.meta_url)
+
+        if self.type is not None:
+            self.download_data_file()
+            self.load_data()
+
+    def download_data_file(self):
+        self.data_file_path = self.current_dir / f'{self.type}.toml'
+        if self.data_file_path.exists():
+            return
+        url = self.meta['url'][self.type]
+        response = urllib.request.urlopen(url)
+        data = response.read()
+        self.data_file_path.write_bytes(data)
+
+
+class FuturesTradingCalendar(BaseTradingCalendar):
+    type = 'futures'
+
+    def load_data(self):
         # tips
         #   这里的日期为自然日，非交易结算日
         #   周末没有日盘与夜盘，程序逻辑排除
 
-        config_file_path = Path(__file__).parent / 'data' / 'futures.toml'
-        self.config = toml.load(config_file_path)
+        self.config = toml.load(self.data_file_path)
 
         now = datetime.now()
         if now.date() > self.config['expire_date']:
@@ -47,10 +78,11 @@ class FuturesTradingCalendar:
         return True
 
 
-class OptionsTradingCalendar:
-    def __init__(self):
-        config_file_path = Path(__file__).parent / 'data' / 'options.toml'
-        self.config = toml.load(config_file_path)
+class OptionsTradingCalendar(BaseTradingCalendar):
+    type = 'options'
+
+    def load_data(self):
+        self.config = toml.load(self.data_file_path)
 
         now = datetime.now()
         if now.date() > self.config['expire_date']:
