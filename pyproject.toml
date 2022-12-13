@@ -7,6 +7,4 @@ name = "qtl-trading-calendar"
 version = "20221213"
 description = "Quantalon Trading Calendar"
 requires-python = ">=3.11"
-
-[project.readme]
-long_description_content_type = "text/markdown"
+readme = "readme.md"
