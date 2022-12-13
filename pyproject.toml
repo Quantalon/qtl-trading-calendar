@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qtl-trading-calendar"
-version = "20221212"
+version = "20221213"
 description = "Quantalon Trading Calendar"
 long_description = "Quantalon Trading Calendar"
 requires-python = ">=3.11"
