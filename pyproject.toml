@@ -1,10 +1,6 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
 [project]
 name = "qtl-trading-calendar"
-version = "20221213"
+version = "20231007"
 description = "Quantalon Trading Calendar"
 requires-python = ">=3.11"
 readme = "readme.md"
