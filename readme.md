@@ -13,3 +13,16 @@ $ pip install qtl-trading-calendar
 ## Expiration Date
 
 **2023-12-31**
+
+
+## Tests
+
+```
+python -m unittest .\tests\test.py
+```
+
+or
+
+```
+python -m unittest discover -s tests
+```
