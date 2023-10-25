@@ -12,7 +12,7 @@ $ pip install qtl-trading-calendar
 
 ## Expiration Date
 
-**2023-12-31**
+**2024-12-31**
 
 
 ## Tests
