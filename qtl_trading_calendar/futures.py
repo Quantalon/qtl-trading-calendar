@@ -10,6 +10,7 @@ class FuturesTradingCalendar(BaseTradingCalendar):
     def init_config(self):
         config_file_path = Path(__file__).parent / 'data' / 'futures.toml'
         self.config = tomllib.loads(config_file_path.read_text(encoding='utf-8'))
+
         # tips
         #   这里的日期为自然日，非交易结算日
         #   周末没有日盘与夜盘，程序逻辑排除
