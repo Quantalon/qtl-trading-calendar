@@ -1,6 +1,7 @@
 from datetime import time, datetime, timedelta
 from pathlib import Path
-import tomllib
+
+import toml
 
 from .base import BaseTradingCalendar
 
@@ -9,7 +10,8 @@ class FuturesTradingCalendar(BaseTradingCalendar):
 
     def init_config(self):
         config_file_path = Path(__file__).parent / 'data' / 'futures.toml'
-        self.config = tomllib.loads(config_file_path.read_text(encoding='utf-8'))
+        # self.config = tomllib.loads(config_file_path.read_text(encoding='utf-8'))
+        self.config = toml.load(str(config_file_path))
 
         # tips
         #   这里的日期为自然日，非交易结算日
