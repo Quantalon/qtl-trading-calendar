@@ -16,8 +16,8 @@ class StockTradingCalendar(BaseTradingCalendar):
         # tips
         #   这里的日期为自然日，非交易结算日
         #   周末没有日盘与夜盘，程序逻辑排除
-        self.start_date = self.config['start_date'].date()
-        self.end_date = self.config['end_date'].date()
+        self.start_date = self.config['start_date']
+        self.end_date = self.config['end_date']
 
         # Special cases
         self.no_day_trading_dates = set(self.config['holiday_dates'])
