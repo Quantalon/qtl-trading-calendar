@@ -1,7 +1,6 @@
 from datetime import date, datetime, timedelta
 from pathlib import Path
-
-import toml
+import tomllib
 
 from .base import BaseTradingCalendar
 
@@ -10,8 +9,7 @@ class StockTradingCalendar(BaseTradingCalendar):
 
     def init_config(self):
         config_file_path = Path(__file__).parent / 'data' / 'stock.toml'
-        # self.config = tomllib.loads(config_file_path.read_text(encoding='utf-8'))
-        self.config = toml.load(str(config_file_path))
+        self.config = tomllib.loads(config_file_path.read_text(encoding='utf-8'))
 
         # tips
         #   这里的日期为自然日，非交易结算日

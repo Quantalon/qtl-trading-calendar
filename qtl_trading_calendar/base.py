@@ -11,6 +11,9 @@ class BaseTradingCalendar:
     def ensure_date(self, d):
         if isinstance(d, datetime):
             return d.date()
+        if isinstance(d, date):
+            return d
+        raise TypeError(f'Invalid date type: {type(d)}')
 
     def check_date(self, d: date):
         if not (self.start_date <= d <= self.end_date):
