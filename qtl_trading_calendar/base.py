@@ -8,11 +8,19 @@ class BaseTradingCalendar:
         self.config = None
         self.init_config()
 
+    def ensure_date(self, d):
+        if isinstance(d, datetime):
+            return d.date()
+        if isinstance(d, date):
+            return d
+        raise TypeError(f'Invalid date type: {type(d)}')
+
     def check_date(self, d: date):
         if not (self.start_date <= d <= self.end_date):
             raise AttributeError('Out of Calendar Date Range...')
 
     def has_day_trading(self, d: date):
+        d = self.ensure_date(d)
         self.check_date(d)
         if is_weekend(d):
             return False
@@ -21,6 +29,7 @@ class BaseTradingCalendar:
         return True
 
     def has_night_trading(self, d: date):
+        d = self.ensure_date(d)
         self.check_date(d)
         if is_weekend(d):
             return False
@@ -36,6 +45,7 @@ class BaseTradingCalendar:
         return self.get_trading_day(now)
 
     def next_trading_day(self, d: date, n=1):
+        d = self.ensure_date(d)
         count = 0
         while True:
             d = d + timedelta(days=1)
@@ -45,6 +55,7 @@ class BaseTradingCalendar:
                     return d
 
     def previous_trading_day(self, d: date, n=1):
+        d = self.ensure_date(d)
         count = 0
         while True:
             d = d - timedelta(days=1)

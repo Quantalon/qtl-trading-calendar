@@ -4,7 +4,7 @@
 
 ## Quick Start
 
-安装
+Install
 
 ```
 $ pip install qtl-trading-calendar
@@ -12,8 +12,7 @@ $ pip install qtl-trading-calendar
 
 ## Expiration Date
 
-**2024-12-31**
-
+**2026-12-31**
 
 ## Tests
 
